@@ -15,8 +15,6 @@
 # Python version : 3.7++                                   #
 ############################################################
 
-import os, sys, hashlib, json, random, re
-from get_proxy import proxy
 
 try:
   from concurrent.futures import ThreadPoolExecutor
@@ -191,37 +189,7 @@ class MOONTON:
           )
         )
       )
-      ask = input(
-        '[?] Apakah ingin menggunakan proxy?(\033[92mDisarankan\033[0m) [Y/t]: '
-      )
-      if ask.lower(
-      ).strip(
-      ) == 'y':
-        self.valid_proxy = proxy.prox(
-        )
-        with ThreadPoolExecutor(
-          max_workers=50
-        ) as thread:
-          [
-            thread.submit(
-              self.validate,
-              user,
-              True
-            ) for user in self.userdata
-          ]
-      else:
-        print(
-          ''
-        )
-        with ThreadPoolExecutor(
-          max_workers=10
-        ) as thread:
-          [
-            thread.submit(
-              self.validate,
-              user,
-              False
-            ) for user in self.userdata
+
           ]
       print(
         '\n\n[#] LIVE: '+str(
